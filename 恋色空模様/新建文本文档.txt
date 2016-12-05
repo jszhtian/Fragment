@@ -1,0 +1,33 @@
+SEC5 file(!offset!)
+0x4					53 45 43 35->magic
+0x4					E0 A5 01 00->??
+0x4					43 48 41 52->??
+0x4					10 00 00 00->Sector0
+0x10(Sector0)		00000000000000000000000000000000->??
+0x4					52 54 46 43->??
+0x4 				87 00 00 00->Sector1 Size
+0x87(Sector1)		xxx00结尾->外部文件列表?
+0x4					4F 50 54 4E->??
+0x4					5E 13 00 00->Sector2 Size
+0x135e(Sector2)		001A00xxxx834E->??
+0x4					43 5A 49 54->??
+0x4					25 0B 00 00->Sector3 Size
+0x0b25(Sector3) 	6600xxx2E01->目录表??
+0x4					44 54 44 45->??
+0x4					18 A2 04 00->Sector4 Size
+0x04A218(Sector4)	C7010000xxx000000->??
+0x4					56 41 52 49->??
+0x4					08 00 00 00->Sector5 Size
+0x8(Sector5)		1100000018000000->??
+0x4					45 58 50 4C->??
+0x4					04 00 00 00->Sector6 Size
+0x4(Sector6)		00 00 00 00->??
+0x4					43 4F 44 45->??
+0x4					75 06 2F 01->Sector7 Size//Code Sector?
+0x012f0675(Sector7)	1B2F6EEFxxx170B->??//Code
+0x4					52 45 53 32
+0x4					94 23 19 00->Sector8 Size//BGM
+0x192394			xxxF909
+0x4					45 4E 44 53->ENDS
+0x4					00 00 00 00//end
+
