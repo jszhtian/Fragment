@@ -1,0 +1,20 @@
+Script.dat
+0x8 4E454B4F5041434B NEKOPACK Magic
+0x4 176C2CB9 Hash1
+0x4 00000000 00
+0x4 B1AFC03D TableHashName==£¨Check£¨Hash1.Sector Size1£©£©
+0x4 B8050000 Sector Size1
+0x05B8 Sector1
+
+
+
+Sector1XOR Enc!(Key1?? )
+0x4 ??
+0x4 ??
+
+File??
+0x4 80B0C0FD HashName==£¨Check£¨Hash1£¬Size£©£©
+0x4 72020000 Size
+0xsize data
+XOR Enc!(Key1?? 0019E41C)
+

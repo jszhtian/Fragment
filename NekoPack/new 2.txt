@@ -1,0 +1,47 @@
+﻿//Check（Hash1，Sector Size1==TableHashName）&&（Hash1，FileSize==FileHashName）
+006707E0  |.  8B7D 08       mov edi,[arg.1]
+006707E3  |.  8B45 0C       mov eax,[arg.2]
+006707E6  |.  89C2          mov edx,eax
+006707E8  |.  05 658B585D   add eax,0x5D588B65
+006707ED  |.  31D0          xor eax,edx
+006707EF  |.  81C2 D6C162CA add edx,0xCA62C1D6
+006707F5  |.  31C2          xor edx,eax
+006707F7  |.  05 DCBC1B8F   add eax,0x8F1BBCDC
+006707FC  |.  31D0          xor eax,edx
+006707FE  |.  81C2 6589076C add edx,0x6C078965
+00670804  |.  31C2          xor edx,eax
+00670806  |.  8907          mov dword ptr ds:[edi],eax
+00670808  |.  8957 04       mov dword ptr ds:[edi+0x4],edx
+
+//解密文件
+00670823  |.  0F6F08        movq mm1,qword ptr ds:[eax]//EAX？？？
+00670826  |>  0F6F06        movq mm0,qword ptr ds:[esi]
+00670829  |.  0FEFC1        pxor mm0,mm1
+0067082C  |.  0FFDC8        paddw mm1,mm0
+0067082F  |.  0F7F07        movq qword ptr ds:[edi],mm0
+00670832  |.  83C6 08       add esi,0x8
+00670835  |.  83C7 08       add edi,0x8
+00670838  |.  39CE          cmp esi,ecx
+
+//keygen！（EDI->key result(64bit)）
+006707DC  /$  55            push ebp
+006707DD  |.  8BEC          mov ebp,esp
+006707DF  |.  57            push edi
+006707E0  |.  8B7D 08       mov edi,[arg.1]
+006707E3  |.  8B45 0C       mov eax,[arg.2]
+006707E6  |.  89C2          mov edx,eax
+006707E8  |.  05 658B585D   add eax,0x5D588B65
+006707ED  |.  31D0          xor eax,edx
+006707EF  |.  81C2 D6C162CA add edx,0xCA62C1D6
+006707F5  |.  31C2          xor edx,eax
+006707F7  |.  05 DCBC1B8F   add eax,0x8F1BBCDC
+006707FC  |.  31D0          xor eax,edx
+006707FE  |.  81C2 6589076C add edx,0x6C078965
+00670804  |.  31C2          xor edx,eax
+00670806  |.  8907          mov dword ptr ds:[edi],eax
+00670808  |.  8957 04       mov dword ptr ds:[edi+0x4],edx
+0067080B  |.  5F            pop edi                                                ;  0019FA88
+0067080C  |.  5D            pop ebp                                                ;  0019FA88
+0067080D  \.  C3            retn
+
+
