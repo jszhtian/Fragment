@@ -1,0 +1,12 @@
+00883376      68 00100000   push 0x1000
+0088337B      FF75 08       push dword ptr ss:[ebp+0x8]
+0088337E  |.  8D96 CC310300 lea edx,dword ptr ds:[esi+0x331CC]
+00883384  |.  8D8D FCEFFFFF lea ecx,[local.1025]
+0088338A  |.  C783 C4100000>mov dword ptr ds:[ebx+0x10C4],0x0
+00883394  |.  8983 D8100000 mov dword ptr ds:[ebx+0x10D8],eax
+0088339A      E8 11B50000   call rorolog_.0088E8B0                   ;  --》》》StrCpy(int index,int buffersize)[直接把返回值换成需要的char*即可]
+0088339F  |.  FFB5 FCEFFFFF push [local.1025]
+008833A5  |.  8BD3          mov edx,ebx
+008833A7  |.  8BCE          mov ecx,esi                              ;  rorolog_.<ModuleEntryPoint>
+008833A9  |.  E8 B2EFFFFF   call rorolog_.00882360
+
