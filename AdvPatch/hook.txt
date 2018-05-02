@@ -1,0 +1,33 @@
+00493122   .  64:A3 0000000>mov dword ptr fs:[0],eax
+00493128   .  8965 F0       mov dword ptr ss:[ebp-0x10],esp
+0049312B   .  8B75 08       mov esi,dword ptr ss:[ebp+0x8]
+0049312E   .  8B45 10       mov eax,dword ptr ss:[ebp+0x10]
+00493131   .  50            push eax                                 ;  Zero
+00493132   .  51            push ecx                                 ;  File Name
+00493133   .  8B4D 0C       mov ecx,dword ptr ss:[ebp+0xC]
+00493136   .  52            push edx                                 ;  ARC Name
+00493137   .  8BD6          mov edx,esi
+00493139   .  E8 42D80000   call AdvHD.004A0980                      ;  Load PNA Image from ARC
+0049313E   .  33FF          xor edi,edi
+00493140   .  897D FC       mov dword ptr ss:[ebp-0x4],edi
+00493143   .  C706 80FE4F00 mov dword ptr ds:[esi],AdvHD.004FFE80
+00493149   .  897E 30       mov dword ptr ds:[esi+0x30],edi
+0049314C   .  897E 48       mov dword ptr ds:[esi+0x48],edi
+0049314F   .  397E 2C       cmp dword ptr ds:[esi+0x2C],edi
+00493152   .  75 11         jnz short AdvHD.00493165
+
+
+00490B29  |.  8BC5          mov eax,ebp
+00490B2B  |.  8D50 01       lea edx,dword ptr ds:[eax+0x1]
+00490B2E  |.  8BFF          mov edi,edi                              ;  AdvHDT.<ModuleEntryPoint>
+00490B30      8A08          mov cl,byte ptr ds:[eax]
+00490B32      40            inc eax
+00490B33      84C9          test cl,cl
+00490B35    ^ 75 F9         jnz short AdvHDT.00490B30
+00490B37      2BC2          sub eax,edx                              ;  计算文本长度
+00490B39      56            push esi                                 ;  AdvHDT.<ModuleEntryPoint>
+00490B3A      8BF0          mov esi,eax
+00490B3C  |.  33C9          xor ecx,ecx                              ;  AdvHDT.<ModuleEntryPoint>
+
+
+
