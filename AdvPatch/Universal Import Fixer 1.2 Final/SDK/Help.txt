@@ -1,0 +1,147 @@
+How to use UIF.dll?
+
+
+int UIF ( LPDWORD ProcID      // in     : Process ID
+          LPDWORD CodeStart   // in/out : if 0 automode else enter manually
+          LPDWORD CodeEnd     // in/out : if 0 automode else enter manually
+          LPDWORD NewIAT      // in/out : if 0 automode else enter manually
+          LPDWORD IATRVA      // out    : after UIF progress read this (use for Imprec etc) 
+          LPDWORD IATSize     // out    : after UIF progress read this (use for Imprec etc)
+          LPDWORD NormImports // out    : after UIF progress read this, Normal Imports Count
+          LPDWORD DirImports  // out    : after UIF progress read this, Direct Imports Count
+          bool    FixDir      // in     : if True Directly Imports process else just normal imports
+         );
+
+Samples coded by: Magic_h2001
+
+
+VC:
+====================================================================================================
+#include "stdio.h"
+#include "windows.h"
+
+#pragma comment(linker,"/SUBSYSTEM:CONSOLE" )
+
+typedef int (_stdcall *_UIF)(LPDWORD,LPDWORD,LPDWORD,LPDWORD,LPDWORD,LPDWORD,LPDWORD,LPDWORD,bool);
+
+void main()
+{
+ _UIF UIF;
+ HINSTANCE hInst;
+ bool UIFLoaded=FALSE; 
+
+ DWORD ProcID, CodeStart, CodeEnd, NewIAT, IATRVA, IATSize,
+       NormImports, DirImports;
+ int   Result;
+
+ hInst = LoadLibrary("UIF.dll");
+ if (hInst !=NULL) UIFLoaded=TRUE;
+ UIF = (_UIF)GetProcAddress(hInst,"UIF");
+
+ if (!UIFLoaded) return;
+
+ printf("UIF started...\n");
+
+ ProcID=0x1E80;
+ CodeStart=0;
+ CodeEnd=0;
+ NewIAT=0;
+ IATRVA=0;
+ IATSize=0;
+ NormImports=0;
+ DirImports=0;
+ Result=UIF(&ProcID, &CodeStart, &CodeEnd, &NewIAT, &IATRVA, &IATSize, &NormImports, &DirImports, FALSE);
+ switch (Result)
+ {
+   case 0:printf("Fixing Success...\n"); break;
+   case 1:printf("Error! Process ID is invalid or Process is Protected\n"); break;
+   case 2:printf("Process Modules Access Error! maybe Process is Protected\n"); break;
+   case 3:printf("Error! Virtual Memory is Low or Invalid 'Code Start','Code End'\n"); break;
+   case 4:printf("Memory Access Error! 'Code Start' or 'Code End' is Invalid or Process is Protected\n"); break;
+   case 5:printf("Memory Access Error! 'New IAT VA' is Invalid or Process is Protected\n"); break;
+   case 6:printf("Error: WinNt not Present\n"); break;
+   case 7:printf("Info: UIF is in Progress\n"); break;
+   case 8:printf("Error in Memory Allocation. Enter 'New IAT VA' Manually\n"); break;
+ }
+ if (Result==0) printf("IATRVA: %X  , IATSize: %X \n",IATRVA,IATSize);
+}
+
+
+
+
+Delphi:
+====================================================================================================
+function UIF( var ProcID, CodeStart, CodeEnd,
+                  NewIAT, IATRVA, IATSize,
+                  NormImports, DirImports: DWORD;
+                  FixDir:Bool ): Integer; stdcall; external 'UIF.dll' name 'UIF';
+
+procedure Fixing;
+var ProcID, CodeStart, CodeEnd,
+    NewIAT, IATRVA, IATSize,
+    NormImports, DirImports: DWORD;
+    Result1: Integer;
+begin
+ ProcID:=$1DAC;
+ CodeStart:=0;
+ CodeEnd:=0;
+ NewIAT:=0;
+ IATRVA:=0;
+ IATSize:=0;
+ NormImports:=0;
+ DirImports:=0;
+ Result1:= UIF(ProcID, CodeStart, CodeEnd, NewIAT, IATRVA, IATSize, NormImports, DirImports, False);
+ case Result1 of
+  0: ShowMessage('Fixing Success...');
+  1: ShowMessage('Error! Process ID is invalid or Process is Protected');
+  2: ShowMessage('Process Modules Access Error! maybe Process is Protected');
+  3: ShowMessage('Error! Virtual Memory is Low or Invalid ''Code Start'',''Code End''');
+  4: ShowMessage('Memory Access Error! ''Code Start'' or ''Code End'' is Invalid or Process is Protected');
+  5: ShowMessage('Memory Access Error! ''New IAT VA'' is Invalid or Process is Protected');
+  6: ShowMessage('Error: WinNt not Present');
+  7: ShowMessage('Info: UIF is in Progress');
+  8: ShowMessage('Error in Memory Allocation. Enter ''New IAT VA'' Manually');
+ end;
+ if Result1 = 0 then ShowMessage(IntToHex(IATRVA,8)+'    '+IntToHex(IATSize,8));
+end;
+
+
+
+
+VB:
+====================================================================================================
+Private Declare Function UIF Lib "UIF.dll" (ProcID As Long, _
+                                             CodeStart As Long, _
+                                             CodeEnd As Long, _
+                                             NewIAT As Long, _
+                                             IATRVA As Long, _
+                                             IATSize As Long, _
+                                             NormImports As Long, _
+                                             DirImports As Long, _
+                                             FixDir As Boolean) As Integer
+
+Private Sub Command1_Click()
+ Dim ProcID, CodeStart, CodeEnd, NewIAT, IATRVA, IATSize, NormImports, DirImports As Long
+ Dim Result As Integer
+ ProcID = &H1CC0
+ CodeStart = 0
+ CodeEnd = 0
+ NewIAT = 0
+ IATRVA = 0
+ IATSize = 0
+ NormImports = 0
+ DirImports = 0
+ Result = UIF(ProcID, CodeStart, CodeEnd, NewIAT, IATRVA, IATSize, NormImports, DirImports, False)
+ Select Case Result
+  Case 0: MsgBox "Fixing Success..."
+  Case 1: MsgBox "Error! Process ID is invalid or Process is Protected"
+  Case 2: MsgBox "Process Modules Access Error! maybe Process is Protected"
+  Case 3: MsgBox "Error! Virtual Memory is Low or Invalid 'Code Start','Code End'"
+  Case 4: MsgBox "Memory Access Error! 'Code Start' or 'Code End' is Invalid or Process is Protected"
+  Case 5: MsgBox "Memory Access Error! 'New IAT VA' is Invalid or Process is Protected"
+  Case 6: MsgBox "Error: WinNt not Present"
+  Case 7: MsgBox "Info: UIF is in Progress"
+  Case 8: MsgBox "Error in Memory Allocation. Enter 'New IAT VA' Manually"
+ End Select
+ If Result = 0 Then MsgBox IATRVA & "    " & IATSize
+End Sub
