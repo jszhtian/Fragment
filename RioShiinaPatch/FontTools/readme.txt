@@ -1,0 +1,1 @@
+Need FontForge and Python 2.7
