@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     }
     memcpy(filebuf+sizeof (S25_header_t)+sizeof(long)+sizeof(info),rowtablebuf,sizeof (long)*img_height);
     memcpy(filebuf+sizeof (S25_header_t)+sizeof(long)+sizeof(info)+sizeof (long)*img_height,payloadbuf,sizeof(char)*linebufsize*img_height);
-    QFile fout("rebuild.s25");
+    QFile fout("reIMG.s25");
     fout.open(QIODevice::WriteOnly);
     fout.write(filebuf,sizeof (long)*img_height+sizeof(char)*linebufsize*img_height+sizeof (S25_header_t)+sizeof(long)+sizeof(S25_info_t));
     fout.close();
