@@ -1,0 +1,12 @@
+#ifndef TBLCONVERT_GLOBAL_H
+#define TBLCONVERT_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(TBLCONVERT_LIBRARY)
+#  define TBLCONVERTSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define TBLCONVERTSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // TBLCONVERT_GLOBAL_H

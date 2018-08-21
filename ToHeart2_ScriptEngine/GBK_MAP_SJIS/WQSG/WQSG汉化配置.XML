@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="0" ?>
+<WQSG汉化配置2.0>
+    <Export>
+        <ExportItem Name="test1" ROMPath="C:\Users\Asuka\Desktop\FalcomToolchain\Ao\VITA_JP_BIN" TXTPath="C:\Users\Asuka\Desktop\FalcomToolchain\Ao\VITA_JP_OUTPUT" TBLPathName="C:\Users\Asuka\Desktop\FalcomToolchain\[W]WQSG 导出(导入)_v2012.12070\标准SJIS.tbl" TBL2PathName="C:\Users\Asuka\Desktop\FalcomToolchain\[W]WQSG 导出(导入)_v2012.12070\ControlTB.tbl" ExtName="dat;_dt;dt2;bin" SegmentAddr="0" BeginOffset="0" EndOffset="0" MinLen="2" MaxLen="99999" UseDirectory="1" CheckTblOverlap="1" UseTBL2="0" TxtDirDefault="0" SubDir="0" />
+    </Export>
+</WQSG汉化配置2.0>

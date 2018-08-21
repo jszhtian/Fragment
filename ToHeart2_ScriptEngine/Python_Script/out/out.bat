@@ -1,0 +1,1 @@
+for /r %%i in (*.txt) do (TxtFormat.exe "%%i")
