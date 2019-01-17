@@ -1,0 +1,18 @@
+Call GetSystemDefaultLangID->Move eax,0x411
+CreateFontA 9thvar fdwCharSet 0x01->0x86
+MultiByteToWideChar 不需要改（SS/黄鸡/现妹上出现
+cmp eax, 0xEF40 项目不存在
+cmp ebx, 0xEF40 ; 改为 0FE40
+
+cmp ebx, 8140 ; 8140 是 Shift-JIS 编码中的全角空格，所以此处应改为 0A1A1 （GBK 的全角空格）
+
+cmp ecx, 0xEF1Fh 疑似改成0xFFFF(自定义字符区域
+0xEF1F（ML上出现
+
+cmp al,0A0 0xA0->0xFF
+cmp al,09F 0x9F->0xFF
+
+游戏title 默认人名：data01200.arc-》setup 
+
+log界面选择肢显示为日文乱码！！（在sysprg.arc-》scrslct._bp中）
+
