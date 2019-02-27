@@ -84,6 +84,16 @@ char *s25Class::dumpS25(int *Size)
     return outbuf;
 }
 
+S25_info_t s25Class::getImageInfo()
+{
+    return this->IMG_info;
+}
+
+void s25Class::setImageInfo(S25_info_t info)
+{
+    memcpy(&this->IMG_info,&info,sizeof(S25_info_t));
+}
+
 unsigned int s25Class::getHeadSize()
 {
     return sizeof(IMG_info)+IMG_info.height*sizeof(unsigned long);

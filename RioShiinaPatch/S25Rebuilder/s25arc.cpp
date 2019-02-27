@@ -117,6 +117,9 @@ void S25Arc::save(QString File)
 void S25Arc::replace(int index, QString File)
 {
     s25Class* newimg=new s25Class(File);
+    auto oldS25=s25List.at(ListMap.key(index));
+    auto oldInfo=oldS25->getImageInfo();
+    newimg->setImageInfo(oldInfo);
     s25List.replace(ListMap.key(index),newimg);
 }
 

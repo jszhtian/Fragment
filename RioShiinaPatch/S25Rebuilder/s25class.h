@@ -36,6 +36,7 @@ public:
     char* getPurePayload();
     char* dumpS25(int* Size);
     S25_info_t getImageInfo();
+    void setImageInfo(S25_info_t info);
     unsigned int getHeadSize();
     unsigned int getPakedSize();
 #if(0)
