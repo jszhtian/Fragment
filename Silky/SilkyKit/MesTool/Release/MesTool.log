@@ -1,0 +1,8 @@
+﻿  mestool.cpp
+c:\apeiria\silkykit\新建文件夹\silkykit\mestool\mestool.cpp(392): warning C4244: “初始化”: 从“std::streamoff”转换到“u32”，可能丢失数据
+  正在生成代码
+  373 of 373 functions (100.0%) were compiled.
+    119 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  MesTool.vcxproj -> C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\MesTool.exe

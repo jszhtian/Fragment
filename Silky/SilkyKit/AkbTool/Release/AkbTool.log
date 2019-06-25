@@ -1,0 +1,16 @@
+﻿  akbtool.cpp
+c:\apeiria\silkykit\新建文件夹\silkykit\akbtool\types.h(129): warning C4244: “return”: 从“unsigned __int64”转换到“size_t”，可能丢失数据
+c:\apeiria\silkykit\新建文件夹\silkykit\akbtool\akbtool.cpp(134): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+c:\apeiria\silkykit\新建文件夹\silkykit\akbtool\akbtool.cpp(315): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+c:\apeiria\silkykit\新建文件夹\silkykit\akbtool\akbtool.cpp(327): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+c:\apeiria\silkykit\新建文件夹\silkykit\akbtool\akbtool.cpp(331): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: 参见“fopen”的声明
+  正在生成代码
+  2 of 202 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    7 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+  AkbTool.vcxproj -> C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\AkbTool.exe

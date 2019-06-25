@@ -1,0 +1,12 @@
+﻿  SilkyPatch.cpp
+c:\apeiria\silkykit\新建文件夹\silkykit\silkypatch\silkypatch.cpp(20): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\string.h(119): note: 参见“strcpy”的声明
+    正在创建库 C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\SilkyPatch.lib 和对象 C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\SilkyPatch.exp
+  正在生成代码
+  7 of 7 functions (100.0%) were compiled.
+    2 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+detours.lib(detours.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(detours.obj)”或在“C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+detours.lib(disasm.obj) : warning LNK4099: 未找到 PDB“detours.pdb”(使用“detours.lib(disasm.obj)”或在“C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\detours.pdb”中寻找)；正在链接对象，如同没有调试信息一样
+  SilkyPatch.vcxproj -> C:\apeiria\SilkyKit\新建文件夹\SilkyKit\Release\SilkyPatch.dll

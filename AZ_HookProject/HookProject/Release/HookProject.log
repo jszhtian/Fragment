@@ -1,0 +1,22 @@
+﻿  dllmain.cpp
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(65,20): warning C4996:  'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(133): message :  参见“strcpy”的声明
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(78,1): warning C4996:  'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\stdio.h(243): message :  参见“freopen”的声明
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(79,1): warning C4996:  'freopen': This function or variable may be unsafe. Consider using freopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\stdio.h(243): message :  参见“freopen”的声明
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(99,24): warning C4996:  'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(133): message :  参见“strcpy”的声明
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(100,19): warning C4996:  'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.17763.0\ucrt\string.h(90): message :  参见“strcat”的声明
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(135,19): warning C4838:  从“int”转换到“char”需要收缩转换
+G:\bt\ch\Work\HookProject\HookProject\dllmain.cpp(135,19): warning C4309:  “初始化”: 截断常量值
+    正在创建库 G:\bt\ch\Work\HookProject\Release\HookProject.lib 和对象 G:\bt\ch\Work\HookProject\Release\HookProject.exp
+  正在生成代码
+  6 of 229 functions ( 2.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  已完成代码的生成
+detours.lib(detours.obj) : warning LNK4099: 未找到 PDB“”(使用“detours.lib(detours.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
+detours.lib(disasm.obj) : warning LNK4099: 未找到 PDB“”(使用“detours.lib(disasm.obj)”或在“”中寻找)；正在链接对象，如同没有调试信息一样
+  HookProject.vcxproj -> G:\bt\ch\Work\HookProject\Release\HookProject.dll

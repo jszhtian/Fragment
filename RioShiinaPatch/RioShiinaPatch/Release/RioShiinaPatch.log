@@ -1,0 +1,8 @@
+﻿  stdafx.cpp
+  dllmain.cpp
+  RioShiinaPatch.cpp
+    正在创建库 F:\github\fragment\RioShiinaPatch\Release\RioShiinaPatch.lib 和对象 F:\github\fragment\RioShiinaPatch\Release\RioShiinaPatch.exp
+  正在生成代码
+  All 233 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  RioShiinaPatch.vcxproj -> F:\github\fragment\RioShiinaPatch\Release\RioShiinaPatch.dll

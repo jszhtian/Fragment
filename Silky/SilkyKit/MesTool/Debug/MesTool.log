@@ -1,0 +1,4 @@
+﻿  mestool.cpp
+c:\apeiria\silkykit\silkykit\mestool\mestool.cpp(392): warning C4244: “初始化”: 从“std::streamoff”转换到“u32”，可能丢失数据
+  MesTool.vcxproj -> C:\apeiria\SilkyKit\SilkyKit\Debug\MesTool.exe
+  MesTool.vcxproj -> C:\apeiria\SilkyKit\SilkyKit\Debug\MesTool.pdb (Partial PDB)

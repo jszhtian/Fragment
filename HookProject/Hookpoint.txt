@@ -1,4 +1,4 @@
-00883376      68 00100000   push 0x1000
+﻿00883376      68 00100000   push 0x1000
 0088337B      FF75 08       push dword ptr ss:[ebp+0x8]
 0088337E  |.  8D96 CC310300 lea edx,dword ptr ds:[esi+0x331CC]
 00883384  |.  8D8D FCEFFFFF lea ecx,[local.1025]
