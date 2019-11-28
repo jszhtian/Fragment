@@ -74,21 +74,43 @@ int main(int argc, char *argv[])
         char* filebuf=new char[fread.size()];
         fread.open(QIODevice::ReadOnly);
         fread.read(filebuf,fread.size());
+		fread.close();
         BGITextureHDR BHDR;
         memset(&BHDR,0,sizeof(BGITextureHDR));
         memcpy(&BHDR,filebuf,sizeof(BGITextureHDR));
         auto H_bitmap=QImage(BHDR.width,BHDR.height,QImage::Format_RGBA8888);
-        for (int y=0;y<BHDR.height;y++)
-        {
-            for (int x=0;x<BHDR.width;x++)
-            {
-                auto b=filebuf[sizeof(BGITextureHDR)+y*BHDR.width*32/8+x*32/8+0];
-                auto g=filebuf[sizeof(BGITextureHDR)+y*BHDR.width*32/8+x*32/8+1];
-                auto r=filebuf[sizeof(BGITextureHDR)+y*BHDR.width*32/8+x*32/8+2];
-                auto a=filebuf[sizeof(BGITextureHDR)+y*BHDR.width*32/8+x*32/8+3];
-                H_bitmap.setPixel(x,y,qRgba(r,g,b,a));
-            }
-        }
+		if (BHDR.bitCount / 8 == 4)
+		{
+			for (int y = 0; y < BHDR.height; y++)
+			{
+				for (int x = 0; x < BHDR.width; x++)
+				{
+					auto b = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 32 / 8 + x * 32 / 8 + 0];
+					auto g = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 32 / 8 + x * 32 / 8 + 1];
+					auto r = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 32 / 8 + x * 32 / 8 + 2];
+					auto a = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 32 / 8 + x * 32 / 8 + 3];
+					H_bitmap.setPixel(x, y, qRgba(r, g, b, a));
+				}
+			}
+		}
+		else if(BHDR.bitCount / 8 == 3)
+		{
+			for (int y = 0; y < BHDR.height; y++)
+			{
+				for (int x = 0; x < BHDR.width; x++)
+				{
+					auto b = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 24 / 8 + x * 24 / 8 + 0];
+					auto g = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 24 / 8 + x * 24 / 8 + 1];
+					auto r = filebuf[sizeof(BGITextureHDR) + y * BHDR.width * 24 / 8 + x * 24 / 8 + 2];
+					H_bitmap.setPixel(x, y, qRgb(r, g, b));
+				}
+			}
+		}
+		else
+		{
+			cout << "Unexpected Texture, Need RGBA or RGB Texture" << endl;
+		}
+        
         QString FileName=argv[2];
         FileName+=".png";
         H_bitmap.save(FileName,"png");
