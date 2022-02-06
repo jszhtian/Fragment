@@ -1,0 +1,305 @@
+强制读取本地文件
+
+更改读取顺序从0123到3120
+
+signed int __usercall sub_450DC1@<eax>(unsigned __int16 a1@<ax>)
+{
+  int v1; // ebp
+  bool v3; // al
+  char v4; // al
+  bool v5; // dl
+  int v6; // eax
+  char i; // bl
+  int v8; // edx
+  signed int v9; // eax
+  unsigned __int8 v10; // al
+  _DWORD *v11; // esi
+  int v12; // eax
+  int v13; // edx
+  int v14; // ecx
+  int v15; // edi
+  int v16; // esi
+  int v17; // edx
+  int v18; // esi
+  int v19; // ebp
+  int v20; // esi
+  int v21; // ebx
+  int v22; // ebx
+  _DWORD *v23; // esi
+  int v24; // eax
+  int v25; // ebx
+  int v26; // eax
+  int v27; // ecx
+  int v28; // esi
+  _DWORD *v29; // edi
+  int v30; // edx
+  int v31; // ecx
+  int v32; // esi
+  int v33; // eax
+  int v34; // ebx
+  int v35; // ebx
+  int v36; // ebx
+  int v37; // edx
+  int v38; // esi
+  int v39; // ecx
+  int v40; // eax
+  __int16 v41; // dx
+  int v42; // ST14_4
+  unsigned int v43; // edi
+  unsigned int v44; // ebx
+  int v45; // ebp
+  int v46; // edx
+  signed int v47; // edx
+  signed int v48; // eax
+  int v49; // ebx
+  int v50; // edx
+  signed int v51; // edx
+  signed int v52; // eax
+  char FilePath; // [esp+8h] [ebp-DCh]
+  size_t v54; // [esp+88h] [ebp-5Ch]
+  _DWORD *v55; // [esp+8Ch] [ebp-58h]
+  char v56; // [esp+90h] [ebp-54h]
+  char v57; // [esp+91h] [ebp-53h]
+  int v58; // [esp+B8h] [ebp-2Ch]
+  char *v59; // [esp+BCh] [ebp-28h]
+  int v60; // [esp+C0h] [ebp-24h]
+  _DWORD *v61; // [esp+C4h] [ebp-20h]
+  _DWORD *v62; // [esp+C8h] [ebp-1Ch]
+  int v63; // [esp+CCh] [ebp-18h]
+  char v64; // [esp+D0h] [ebp-14h]
+  char v65; // [esp+D1h] [ebp-13h]
+  char v66; // [esp+D2h] [ebp-12h]
+  char v67; // [esp+D3h] [ebp-11h]
+
+  v1 = a1;
+  if ( *(_DWORD *)(dword_834448 + 4 * a1) )
+    return 1;
+  *(_DWORD *)(dword_834448 + 4 * a1) = sub_403564(0x1Cu);
+  sprintf(&FilePath, "ysbin\\yst%05d.ybn", v1);
+  v56 = 0;
+  v57 = 0;
+  v3 = !byte_8342C8 && !byte_83430C;
+  v4 = 1 - v3;
+  v5 = byte_8342C8 == 1 && !byte_834310;
+  v6 = (char)((1 - v5) * v4);
+  if ( byte_8342D0 != 1 && v6 )
+  {
+    v64 = 0;<<<<----HERE
+    v65 = 1;
+    v66 = 3;
+    v67 = 2;
+  }
+  else
+  {
+    v64 = 0;
+    v65 = 1;
+    v66 = 2;
+    v67 = 3;
+  }
+  for ( i = 0; i < 4; ++i )
+  {
+    v8 = *(&v64 + i);
+    if ( *(&v64 + i) )
+    {
+      switch ( v8 )
+      {
+        case 1:
+          v9 = sub_440910((int)&v54, &FilePath);
+          if ( v9 )
+            goto LABEL_25;
+          break;
+        case 2:
+          v9 = sub_440620((int)&v54, &FilePath);
+          if ( v9 )
+            goto LABEL_25;
+          break;
+        case 3:
+          v9 = (char)CheckLpNameIsAFile(&FilePath);
+          if ( (_BYTE)v9 )
+          {
+            v56 = 1;
+            goto LABEL_25;
+          }
+          break;
+      }
+    }
+    else
+    {
+      v9 = sub_440968((int)&v54, &FilePath);
+      if ( v9 )
+        goto LABEL_25;
+    }
+  }
+  v9 = 0;
+LABEL_25:
+  if ( v9 <= 0 )
+    return 0;
+  switch ( v56 )
+  {
+    case 1:
+      v10 = sub_40C62C(&v54, &FilePath);
+      break;
+    case 2:
+      v10 = GetFileFromYpf(&v54, (int)&FilePath);
+      break;
+    case 3:
+      v10 = sub_40BC58(&v54, (int)&FilePath);
+      break;
+    default:
+      v10 = v56 == 4 ? (unsigned __int8)sub_40BBD8(&v54, (int)&FilePath) : -2;
+      break;
+  }
+  if ( v10 )
+    return 0;
+  v11 = v55;
+  v61 = v55;
+  **(_DWORD **)(dword_834448 + 4 * v1) = v55[2];
+  v12 = v11[3];
+  v13 = v11[4];
+  v63 = v13;
+  v14 = v11[5];
+  v60 = v11[6];
+  v62 = v11 + 8;
+  v59 = (char *)v11 + v12 + 32;
+  v15 = dword_834448;
+  v16 = (int)v11 + v12 + v13;
+  *(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 20) = v16 + 32;
+  *(_DWORD *)(*(_DWORD *)(v15 + 4 * v1) + 24) = v16 + v14 + 32;
+  v17 = v63;
+  if ( v12 > 0 )
+  {
+    v18 = 0;
+    v58 = v1;
+    v19 = (int)v62;
+    do
+      *(_BYTE *)(++v19 - 1) ^= byte_834054[v18++ & 3];
+    while ( v18 < v12 );
+    v1 = v58;
+  }
+  v20 = (int)v59;
+  if ( v17 > 0 )
+  {
+    v21 = 0;
+    do
+      *(_BYTE *)(++v20 - 1) ^= byte_834054[v21++ & 3];
+    while ( v21 < v17 );
+  }
+  v22 = dword_834448;
+  v23 = *(_DWORD **)(dword_834448 + 4 * v1);
+  v24 = v23[5];
+  if ( v14 > 0 )
+  {
+    v25 = 0;
+    do
+      *(_BYTE *)(++v24 - 1) ^= byte_834054[v25++ & 3];
+    while ( v25 < v14 );
+    v22 = dword_834448;
+    v23 = *(_DWORD **)(dword_834448 + 4 * v1);
+  }
+  v26 = v23[6];
+  if ( v60 > 0 )
+  {
+    v27 = 0;
+    v28 = v60;
+    do
+      *(_BYTE *)(++v26 - 1) ^= byte_834054[v27++ & 3];
+    while ( v27 < v28 );
+    v22 = dword_834448;
+    v23 = *(_DWORD **)(dword_834448 + 4 * v1);
+  }
+  *(_DWORD *)(*(_DWORD *)(v22 + 4 * v1) + 16) = malloc(4 * *v23);
+  v29 = *(_DWORD **)(v22 + 4 * v1);
+  if ( *v29 > 0 )
+  {
+    v30 = 0;
+    v31 = (int)v59;
+    v32 = (int)v61;
+    do
+    {
+      v33 = *(unsigned __int8 *)(v32 + 4 * v30 + 33);
+      *(_DWORD *)(v29[4] + 4 * v30) = v31;
+      v31 += 12 * v33;
+      v22 = dword_834448;
+      v29 = *(_DWORD **)(dword_834448 + 4 * v1);
+      ++v30;
+    }
+    while ( v30 < *v29 );
+  }
+  *(_DWORD *)(*(_DWORD *)(v22 + 4 * v1) + 4) = malloc(8u);
+  **(_DWORD **)(*(_DWORD *)(v22 + 4 * v1) + 4) = malloc(4 * **(_DWORD **)(v22 + 4 * v1));
+  v34 = dword_834448;
+  *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(v34 + 4 * v1) + 4) + 4) = malloc(4 * **(_DWORD **)(dword_834448 + 4 * v1));
+  v35 = dword_834448;
+  *(_DWORD *)(*(_DWORD *)(v35 + 4 * v1) + 8) = malloc(2 * **(_DWORD **)(dword_834448 + 4 * v1));
+  *(_DWORD *)(*(_DWORD *)(v35 + 4 * v1) + 12) = malloc(**(_DWORD **)(v35 + 4 * v1));
+  sub_46A8B8(0);
+  v36 = *(_DWORD *)(dword_834448 + 4 * v1);
+  v37 = *(_DWORD *)(v36 + 20);
+  if ( *(_DWORD *)v36 > 0 )
+  {
+    v38 = 0;
+    v62 = *(_DWORD **)v36;
+    v59 = (char *)v37;
+    while ( 1 )
+    {
+      v63 = 2 * v38;
+      v39 = LOBYTE(v61[v38 + 8]);
+      v40 = BYTE1(v61[v38 + 8]);
+      v41 = HIWORD(v61[v38 + 8]);
+      *(_DWORD *)(**(_DWORD **)(v36 + 4) + 4 * v38) = sub_45C340;
+      *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 4) + 4) + 4 * v38) = dword_793460[v39];
+      *(_BYTE *)(v38 + *(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 12)) = v40;
+      *(_WORD *)(*(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 8) + 2 * v38) = v41;
+      if ( v39 == 42 )
+      {
+        v49 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 16) + 2 * v63);
+        v50 = *(_DWORD *)(v49 + 8);
+        byte_8346F4 = 0;
+        v51 = dword_834684(&unk_5C8D60, &v59[v50], *(_DWORD *)(v49 + 4));
+        if ( !byte_8346F4 )
+        {
+          v52 = sub_4513C0((const char *)&unk_5C8D60, v51);
+          if ( v52 >= 0 )
+            *(_DWORD *)(v49 + 4) = v52 + 0x10000000;
+        }
+      }
+      else if ( v39 == 43 )
+      {
+        v43 = *(_DWORD *)(*(_DWORD *)(*(_DWORD *)(dword_834448 + 4 * v1) + 16) + 2 * v63);
+        if ( v40 > 0 )
+        {
+          v44 = v43 + 12 * v40;
+          v60 = v38;
+          v58 = v1;
+          v45 = (int)v59;
+          do
+          {
+            if ( !*(_BYTE *)v43 )
+            {
+              *(_WORD *)(v43 + 2) = 0;
+              v46 = *(_DWORD *)(v43 + 8);
+              byte_8346F4 = 0;
+              v47 = dword_834684(&unk_5C8960, v45 + v46, *(_DWORD *)(v43 + 4));
+              if ( !byte_8346F4 )
+              {
+                v48 = sub_4513C0((const char *)&unk_5C8960, v47);
+                if ( v48 >= 0 )
+                  *(_WORD *)(v43 + 2) = v48;
+              }
+            }
+            v43 += 12;
+          }
+          while ( v43 < v44 );
+          v38 = v60;
+          v1 = v58;
+        }
+      }
+      if ( ++v38 >= (signed int)v62 )
+        break;
+      v36 = *(_DWORD *)(dword_834448 + 4 * v1);
+    }
+  }
+  sub_46A8B8(1);
+  sub_4514BC(v42);
+  return 1;
+}
