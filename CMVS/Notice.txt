@@ -1,0 +1,4 @@
+keluo:
+
+Max Str len = 0x80
+Safe Range 0x78

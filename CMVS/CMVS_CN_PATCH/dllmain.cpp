@@ -7,10 +7,32 @@ CHAR CopyStr[0x1000] = { 0 };
 CHAR* FileName = nullptr;
 TransText transtext;
 wchar_t wout[0x100];
+
+bool isAllAscii(string s)
+{
+    for (unsigned char ch : s)
+    {
+        if (ch >> 7) // whether the first bit is 1
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+//char trans[] = "友達だと思っていたやつが親に言われて態度を変え、面倒くさいと距離を置き、あげくには教師にまで特別扱いされれば誰だってトラ";
+
 void __stdcall ProcessPushStr(UINT str, UINT off)
 {
     str_off = off;
-    //cout << "0x" << hex << off << "|" << wtoc(ctow((char*)(str + off), 932), 936) << endl;
+    if (strlen((char*)(str + off)) == 0)
+        return;
+    if (isAllAscii((char*)(str + off)))
+        return;
+
+    //cout << "0x" << hex << off << "|"<< strlen((char*)(str + off)) << "|" << wtoc(ctow((char*)(str + off), 932), 936) << endl;
+    
 #if(0)
     //TODO: Add Func Map
     str_off = off;
@@ -38,19 +60,51 @@ void __stdcall ProcessPushStr(UINT str, UINT off)
     }
    // */
 #endif
-    memset(wout, 0, sizeof(wchar_t) * 0x100);
-    DWORD dwMinSize;
+#if(0)
+    if (off == 0x980)
+    {
+        lstrcpyA(CopyStr, "- 心１ -");
+        str_off = (UINT)CopyStr - str;
+    }
+    else if (off == 0x8E4)
+    {
+        lstrcpyA(CopyStr, "中文测试１２３ＡＢＣａｂｃ");
+        str_off = (UINT)CopyStr - str;
+    }
+    else if (off == 0x8F3)
+    {
+        lstrcpyA(CopyStr, "中文测试");
+        str_off = (UINT)CopyStr - str;
+    }
+    else if (off == 0x16C)
+    {
+        lstrcpyA(CopyStr, "库洛的时钟");
+        str_off = (UINT)CopyStr - str;
+    }
+    else
+    {
+        strcpy(CopyStr, trans);
+        str_off = (UINT)CopyStr - str;
+    }
+   
+#endif
 
-    dwMinSize = MultiByteToWideChar(932, 0, (char*)(str + off), -1, NULL, 0); //计算长度
-    MultiByteToWideChar(932, 0, (char*)(str + off), -1, wout, dwMinSize);//转换
 #if(1)
-    auto newText = transtext.Query(wout, off);
+    auto newText = transtext.Query((char*)(str + off), off);
 
     if (newText.length() != 0)
     {
-        lstrcpyA(CopyStr, newText.c_str());
-        str_off = (UINT)CopyStr - str;
-        cout << "Replace: 0x" << hex << off << " | " << wtoc(ctow((char*)(str + off), 932), 936) << endl;
+        if (newText.length() > 0x78)
+        {
+            cout << "OOM: 0x" << hex << off << " | " << wtoc(ctow((char*)(str + off), 932), 936) << endl;
+        }
+        else
+        {
+            lstrcpyA(CopyStr, newText.c_str());
+            str_off = (UINT)CopyStr - str;
+            //cout << "Replace: 0x" << hex << off << " | " << wtoc(ctow((char*)(str + off), 932), 936) << endl;
+        }
+        
     }
     else
     {
@@ -229,7 +283,7 @@ PVOID g_pOldSetWindowTextA = SetWindowTextA;
 typedef bool (WINAPI* PfuncSetWindowTextA)(HWND hWnd, LPCSTR lpString);
 bool WINAPI HookSetWindowTextA(HWND hw, LPCSTR lpString)
 {
-    cout << lpString << endl;
+    //cout << lpString << endl;
     for (int i = 0; i < lstrlenA(lpString);)
     {
         UINT c1 = lpString[i] & 0xFF;
